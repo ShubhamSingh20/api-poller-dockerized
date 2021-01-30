@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  worker:
+    build: .
+    image: &img worker
+    command: [celery, --app=techstax, worker, --loglevel=INFO]
+    depends_on:
+      - beat
+    restart: 'no'
+    volumes:
+      - .:/usr/src/app/
+
+  beat:
+    build: .
+    image: *img
+    command: [celery, --app=techstax, beat, --loglevel=INFO]
+    restart: 'no'
+    volumes:
+      - .:/usr/src/app/
