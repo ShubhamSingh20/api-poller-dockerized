@@ -6,6 +6,7 @@ services:
     command: [celery, --app=techstax, worker, --loglevel=INFO]
     depends_on:
       - beat
+      - rabbitmq
     restart: 'no'
     volumes:
       - .:/usr/src/app/
@@ -14,6 +15,11 @@ services:
     build: .
     image: *img
     command: [celery, --app=techstax, beat, --loglevel=INFO]
+    depends_on: 
+      - rabbitmq
     restart: 'no'
     volumes:
       - .:/usr/src/app/
+  
+  rabbitmq:
+    image: rabbitmq:3.8-alpine
