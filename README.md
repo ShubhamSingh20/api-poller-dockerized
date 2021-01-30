@@ -4,6 +4,9 @@
 
 # Installation
 
+**NOTE**
+create a `.env` file and add the variables present in `env.example` which will be used by the application
+
 ### 1. Clone repo
     https://github.com/ShubhamSingh20/techstax-assignment.git
 
